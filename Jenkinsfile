@@ -14,19 +14,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci' 
+                bat 'npm ci' 
             }
         }
 
         stage('Build Project') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
-                sh 'npm run cypress:run'
+                bat 'npm run cypress:run'
             }
         }
     }
