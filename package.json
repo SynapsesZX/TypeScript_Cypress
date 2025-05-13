@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --reporter mocha-junit-reporter",
     "test": "npm run build && npm run cypress:run"
   },
   "keywords": [],
