@@ -4,7 +4,6 @@ export default defineConfig({
   e2e: {
     specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
     setupNodeEvents(on, config) {
-      require("cypress-mochawesome-reporter/plugin")(on);
       return config;
     },
   },
