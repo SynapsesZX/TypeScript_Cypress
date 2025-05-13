@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://your.repo.url/TypeScript_Cypress.git'
+                git 'https://github.com/SynapsesZX/TypeScript_Cypress.git'
             }
         }
 
