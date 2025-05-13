@@ -10,11 +10,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/SynapsesZX/TypeScript_Cypress.git'
-            }
-        }
+        
 
         stage('Install Dependencies') {
             steps {
