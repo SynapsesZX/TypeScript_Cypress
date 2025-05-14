@@ -5,6 +5,8 @@ describe("Test Rozetka Login Page with different type of data", () => {
   const user = new RozetkaLoginPage();
 
   it("Login with invalid data", () => {
+    cy.log("=== running test ===");
+
     user.visit("https://rozetka.com.ua/");
     user.clickSocialButton();
     user.clickSocialButtonOpen();
