@@ -24,9 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Google Chrome
+        run: |
+          choco install googlechrome -y  # Используем Chocolatey для установки Chrome
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
+          browser: "chrome"
           record: true
           parallel: true
           group: "e2e-tests"
