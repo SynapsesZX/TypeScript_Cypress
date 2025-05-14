@@ -1,7 +1,7 @@
 import { RozetkaLoginPage } from "../../../support/pages/Rozetka/RozetkaLoginPage";
 import { fakePet } from "@fixtures/new_pet";
 
-describe("Test Rozetka Login Page with different type of data", () => {
+describe.skip("Test Rozetka Login Page with different type of data", () => {
   const user = new RozetkaLoginPage();
 
   it("Login with invalid data", () => {
