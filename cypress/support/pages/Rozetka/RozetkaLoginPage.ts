@@ -7,6 +7,7 @@ export class RozetkaLoginPage {
     submitButton: '[type="submit"]',
     errorHint: ".form__hint_type_warning",
     socialButtonOpen: ".social-buttons button.social-buttons__button-open",
+    validationMessage: ".validation-message",
   };
 
   visit(link: string): void {
@@ -15,7 +16,10 @@ export class RozetkaLoginPage {
   }
 
   clickSocialButton(): void {
-    cy.get(this.selectors.socialButton, { timeout: 2000 }).click();
+    cy.get(this.selectors.socialButton, { timeout: 3000 })
+      .should("be.visible")
+      .wait(2000)
+      .click();
   }
 
   clickSocialButtonOpen(): void {
@@ -45,6 +49,15 @@ export class RozetkaLoginPage {
       .invoke("text")
       .then((text) => {
         expect(text.trim()).to.eq(expected_text);
+      });
+  }
+  checkValidationMessage(expected_text: string): void {
+    cy.get(this.selectors.validationMessage)
+      .invoke("text")
+      .then((text) => {
+        const cleanedActual = text.trim();
+        const cleanedExpected = expected_text.trim();
+        expect(cleanedActual).to.eq(cleanedExpected);
       });
   }
 }

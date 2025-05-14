@@ -6,7 +6,15 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["cypress"]
+    "types": ["cypress"],
+    "baseUrl": ".",
+    "paths": {
+      "@fixtures/*": ["cypress/fixtures/*"]
+    }
   },
-  "include": ["cypress/e2e/**/*.ts", "cypress/support/**/*.ts"]
+  "include": [
+    "cypress/e2e/**/*.ts",
+    "cypress/support/**/*.ts",
+    "cypress/fixtures/**/*.ts"
+  ]
 }
