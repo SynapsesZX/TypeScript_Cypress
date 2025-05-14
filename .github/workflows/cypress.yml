@@ -2,19 +2,27 @@ name: Cypress Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   cypress-run:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [1, 2]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -22,18 +30,15 @@ jobs:
           node-version: "22"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Install Google Chrome
-        run: |
-          choco install googlechrome -y  # Используем Chocolatey для установки Chrome
-
-      - name: Run Cypress tests
+      - name: Run Cypress tests (parallel)
         uses: cypress-io/github-action@v5
         with:
-          browser: "chrome"
+          browser: chrome
           record: true
           parallel: true
-          group: "e2e-tests"
+          group: e2e-tests
+          ci-build-id: ${{ github.run_id }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
